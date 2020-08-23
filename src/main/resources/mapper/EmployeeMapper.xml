@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.guet.mapper.EmployeeMapper">
+	<select id="viewEmployee" resultType="employee">
+		SELECT * FROM employee_tb
+	</select>
+    <insert id="addEmployee">
+         INSERT INTO employee_tb VALUES(#{emp_id},#{emp_name},#{sex},#{phone},#{email},#{birthday},#{dept_id},#{pos_id},#{role_id})
+    </insert>
+    <delete id="deleteEmployee">
+		DELETE FROM employee_tb WHERE emp_id=#{emp_id}
+	</delete>
+    <update id="updateEmp_name">
+        UPDATE employee_tb SET emp_name=#{emp_name} WHERE emp_id=#{emp_id}
+    </update>
+    <update id="updateSex">
+        UPDATE employee_tb SET sex=#{sex} WHERE emp_id=#{emp_id}
+    </update>
+    <update id="updatePhone">
+        UPDATE employee_tb SET phone=#{phone} WHERE emp_id=#{emp_id}
+    </update>
+    <update id="updateEmail">
+        UPDATE employee_tb SET email=#{email} WHERE emp_id=#{emp_id}
+    </update>
+    <update id="updateBirthday">
+        UPDATE employee_tb SET birthday=#{birthday} WHERE emp_id=#{emp_id}
+    </update>
+    <update id="updateDept_id">
+        UPDATE employee_tb SET dept_id=#{dept_id} WHERE emp_id=#{emp_id}
+    </update>
+    <update id="updatePos_id">
+        UPDATE employee_tb SET pos_id=#{pos_id} WHERE emp_id=#{emp_id}
+    </update>
+    <update id="updateRole_id">
+        UPDATE employee_tb SET role_id=#{role_id} WHERE emp_id=#{emp_id}
+    </update>
+</mapper>

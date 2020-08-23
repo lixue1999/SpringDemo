@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.guet.mapper.UserMapper">
+	<select id="login" resultType="user">
+		SELECT emp_id,user_name FROM user_tb WHERE user_name=#{user_name} AND password=#{password}
+	</select>
+	<select id="viewUser" resultType="user">
+		SELECT * FROM user_tb
+	</select>
+	<insert id="addUser">
+         INSERT INTO user_tb VALUES(#{emp_id},#{user_name},#{password})
+    </insert>
+	<delete id="deleteUser">
+		DELETE FROM user_tb WHERE emp_id=#{emp_id}
+	</delete>
+	<select id="getMenu" resultType="menu">
+		SELECT m.* FROM menu_tb m,role_menu_tb e WHERE m.id=e.id AND role_id IN(SELECT role_id FROM employee_tb WHERE emp_id = (SELECT emp_id FROM user_tb WHERE user_name=#{user_name})) AND pid is null
+	</select>
+	<update id="updateUser_name">
+        UPDATE user_tb SET user_name=#{user_name} WHERE emp_id=#{emp_id}
+    </update>
+	<update id="updatePassword">
+        UPDATE user_tb SET password=#{password} WHERE emp_id=#{emp_id}
+    </update>
+</mapper>
